@@ -8,7 +8,7 @@
 
 #import "NearbyTheatresViewController.h"
 #import <CoreLocation/CoreLocation.h>
-
+#import "Theatre.h"
 
 @interface NearbyTheatresViewController ()
 <CLLocationManagerDelegate>
@@ -170,7 +170,7 @@
             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         // do stuff
-        
+        NSLog(@"%@", data);
     
         NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
@@ -184,7 +184,12 @@
         NSArray *theatresArray = dataDictionary[@"theatres"];
         for (NSDictionary *theatreDataDictionary in theatresArray)
         {
+            Theatre *theatre = [[Theatre alloc] init];
             NSLog(@"%@", theatreDataDictionary[@"name"]);
+            theatre.name = theatreDataDictionary[@"name"];
+            theatre.address = theatreDataDictionary[@"address"];
+            //theatre.latitude = (float)theatreDataDictionary[@"lat"];
+           // theatre.longitude = (float)heatreDataDictionary[@"lng"];
         
         }
         //NSLog(@"dataDictionary %@", dataDictionary);

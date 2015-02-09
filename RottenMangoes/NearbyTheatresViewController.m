@@ -14,7 +14,7 @@
 <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-
+@property (strong, nonatomic) NSMutableArray *theatres;
 @end
 
 @implementation NearbyTheatresViewController
@@ -166,23 +166,27 @@
     NSString *urlString = @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=49.2804249,-123.1069674&movie=Paddington";
     NSURLSession *session = [NSURLSession sharedSession ];
     
-    [[session dataTaskWithURL:[NSURL URLWithString:urlString]                completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+    [[session dataTaskWithURL:[NSURL URLWithString:urlString]
+            completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         // do stuff
         
-        NSLog(@"response received  %@", data);
+    
+        NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
-        NSLog(@"response: %@", response);
-        NSLog(@"ERROR: %@", error);
-        /*
-        NSDictionary *data = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        if (!self.nearbyTheatres)
+        if (!self.theatres)
         {
-            self.nearbyTheatres = [[NSMutableArray alloc] init];
+            self.theatres = [[NSMutableArray alloc] init];
         }
         
-        self.nearbyTheatres = [NSMutableArray array];
-        // NSArray theatresArray = [dataDictionary objectForKey:@"theatres"];
+        self.theatres = [NSMutableArray array];
+        
+        NSArray *theatresArray = dataDictionary[@"theatres"];
+        for (NSDictionary *theatreDataDictionary in theatresArray)
+        {
+            NSLog(@"%@", theatreDataDictionary[@"name"]);
+        
+        }
         //NSLog(@"dataDictionary %@", dataDictionary);
         // for (NSDictionary *theatreDataDictionary in theatresArray)
         //  Theatre *theatre = [[Theatre alloc]init];
@@ -191,7 +195,7 @@
         // theatre.location.latitude = theatreDataDictionary[@"lat"];
         // theatre.location.longitude = theatreDataDictionary[@"lng"];
         // [self.theatres addObject:theatre];
-        */
+        
                     
     }] resume];
     

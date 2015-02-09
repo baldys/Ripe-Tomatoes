@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-
 @interface NearbyTheatresViewController : UIViewController <MKMapViewDelegate>
 
+
 @property(nonatomic, weak) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) NSString *movieTitle;
+@property (nonatomic, strong) NSString *address;
+
 
 
 @end

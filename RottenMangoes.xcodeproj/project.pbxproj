@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F44A7541A88213D004F7B9C /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A7531A88213D004F7B9C /* Location.m */; };
+		9F44A7571A88334B004F7B9C /* Theatre.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A7561A88334B004F7B9C /* Theatre.m */; };
 		9F6C80F21A84A83900BE89DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C80F11A84A83900BE89DF /* main.m */; };
 		9F6C80F51A84A83900BE89DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C80F41A84A83900BE89DF /* AppDelegate.m */; };
 		9F6C80F81A84A83900BE89DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F6C80F71A84A83900BE89DF /* ViewController.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F44A7521A88213D004F7B9C /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		9F44A7531A88213D004F7B9C /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		9F44A7551A88334B004F7B9C /* Theatre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theatre.h; sourceTree = "<group>"; };
+		9F44A7561A88334B004F7B9C /* Theatre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theatre.m; sourceTree = "<group>"; };
 		9F6C80EC1A84A83900BE89DF /* RottenMangoes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RottenMangoes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6C80F01A84A83900BE89DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F6C80F11A84A83900BE89DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,8 +114,12 @@
 				9F6C80F41A84A83900BE89DF /* AppDelegate.m */,
 				9F6C80F61A84A83900BE89DF /* ViewController.h */,
 				9F6C80F71A84A83900BE89DF /* ViewController.m */,
+				9F44A7551A88334B004F7B9C /* Theatre.h */,
+				9F44A7561A88334B004F7B9C /* Theatre.m */,
 				9F6C81261A85CF1300BE89DF /* NearbyTheatresViewController.h */,
 				9F6C81271A85CF1300BE89DF /* NearbyTheatresViewController.m */,
+				9F44A7521A88213D004F7B9C /* Location.h */,
+				9F44A7531A88213D004F7B9C /* Location.m */,
 				9F6C81181A84AF2500BE89DF /* Movie.h */,
 				9F6C81191A84AF2500BE89DF /* Movie.m */,
 				9F6C80F91A84A83900BE89DF /* Main.storyboard */,
@@ -259,6 +269,8 @@
 				9F6C80F51A84A83900BE89DF /* AppDelegate.m in Sources */,
 				9F6C81281A85CF1300BE89DF /* NearbyTheatresViewController.m in Sources */,
 				9F6C811A1A84AF2500BE89DF /* Movie.m in Sources */,
+				9F44A7571A88334B004F7B9C /* Theatre.m in Sources */,
+				9F44A7541A88213D004F7B9C /* Location.m in Sources */,
 				9F6C80F21A84A83900BE89DF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

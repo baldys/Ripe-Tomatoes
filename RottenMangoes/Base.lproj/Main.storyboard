@@ -50,7 +50,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="wqq-Ck-vjR" id="Ykl-nu-SnR"/>
-                                            <segue destination="e9o-2H-vxt" kind="show" identifier="showDetails" id="bqC-c2-HXE"/>
+                                            <segue destination="e9o-2H-vxt" kind="show" identifier="showDetail" id="rf3-02-VAc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -106,22 +106,52 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYP-50-DUI">
-                                <rect key="frame" x="159" y="94" width="46" height="30"/>
+                                <rect key="frame" x="107" y="168" width="447" height="92"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="ddH-SO-lp8" kind="show" id="Gfv-QZ-Bmh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="detailImageView" destination="24g-Ws-2uX" id="Fg8-nB-6lx"/>
+                        <outlet property="synopsisLabel" destination="Efi-Ty-NO3" id="LDM-vi-Z95"/>
                         <outlet property="titleLabel" destination="xqk-bM-tKW" id="G3n-OZ-v7O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFe-wg-CvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1642" y="265"/>
+        </scene>
+        <!--Nearby Theatres View Controller-->
+        <scene sceneID="alM-oO-dVk">
+            <objects>
+                <viewController id="ddH-SO-lp8" customClass="NearbyTheatresViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hY1-aI-hpg"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZNv-yy-kB2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EIm-w2-RRw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k3v-9L-AQQ">
+                                <rect key="frame" x="0.0" y="-16" width="628" height="648"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="k3v-9L-AQQ" id="t7R-ad-ja7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xpZ-jx-2tA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2312" y="265"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vf3-lD-aK3">

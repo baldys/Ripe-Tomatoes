@@ -42,7 +42,6 @@
     {
         self.movies = [[NSMutableArray alloc] init];
     }
-    
     self.movies = [NSMutableArray array];
     
     NSArray *moviesArray = [dataDictionary objectForKey:@"movies"];
@@ -99,8 +98,6 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%%%%%%%%%%%%%%");
-    
     static NSString *CellIdentifier = @"MovieCell";
     
     MovieCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -139,13 +136,17 @@
 }
 
 
--(void)prepareForSegue:(UIStoryboardSegue*)segue
+-(void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
+    
     NSLog(@"preparing for segue");
     MovieDetailViewController *detailVC = [segue destinationViewController];
     detailVC.movie = [[Movie alloc] init];
     
     NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
+    Movie *movie = [[Movie alloc] init];
+    movie = self.movies[indexPath.item];
+    NSLog(@"movie.title %@",movie.title);
     detailVC.movie = self.movies[indexPath.item];
 
 }

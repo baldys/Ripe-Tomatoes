@@ -7,10 +7,12 @@
 //
 
 #import "MovieDetailViewController.h"
+#import "NearbyTheatresViewController.h"
 
 @interface MovieDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 
 @end
 
@@ -39,6 +41,7 @@
     NSData *imageData = [NSData dataWithContentsOfURL:self.movie.thumbnailURL];
     UIImage *image = [UIImage imageWithData:imageData];
     self.detailImageView.image = image;
+    self.synopsisLabel.text = self.movie.synopsis;
 
     /////
 }
@@ -49,14 +52,17 @@
     self.movie = newMovie;
     
 }
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    NearbyTheatresViewController *mapVC = segue.destinationViewController;
+    mapVC.movieTitle = self.movie.title;
+    
 }
-*/
 
 @end

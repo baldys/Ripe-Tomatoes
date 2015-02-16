@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -83,40 +84,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24g-Ws-2uX">
-                                <rect key="frame" x="44" y="132" width="161" height="147"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24g-Ws-2uX">
+                                <rect key="frame" x="122" y="158" width="161" height="218"/>
                                 <color key="backgroundColor" red="0.96421093201106312" green="0.15757465613456034" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="161" id="DeU-Zf-4yF"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Movie title label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqk-bM-tKW">
-                                <rect key="frame" x="55" y="98" width="93" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie title label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqk-bM-tKW">
+                                <rect key="frame" x="16" y="112" width="382" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efi-Ty-NO3">
-                                <rect key="frame" x="44" y="293" width="410" height="87"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efi-Ty-NO3">
+                                <rect key="frame" x="24" y="384" width="366" height="95"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-o7-VzB">
-                                <rect key="frame" x="50" y="388" width="42" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYP-50-DUI">
-                                <rect key="frame" x="107" y="168" width="447" height="92"/>
-                                <state key="normal" title="Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYP-50-DUI">
+                                <rect key="frame" x="16" y="64" width="382" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8bn-sl-X6E"/>
+                                    <constraint firstAttribute="width" constant="382" id="wH2-XE-tNM"/>
+                                </constraints>
+                                <state key="normal" title="Show Theatre Map">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="ddH-SO-lp8" kind="show" id="Gfv-QZ-Bmh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6YQ-o7-VzB">
+                                <rect key="frame" x="26" y="487" width="372" height="50"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xqk-bM-tKW" firstAttribute="leading" secondItem="WEl-ep-cuQ" secondAttribute="leadingMargin" id="4EW-OG-oeI"/>
+                            <constraint firstAttribute="centerX" secondItem="aYP-50-DUI" secondAttribute="centerX" id="4fT-tQ-7Nb"/>
+                            <constraint firstAttribute="centerX" secondItem="24g-Ws-2uX" secondAttribute="centerX" constant="4.5" id="4p1-3p-TUL"/>
+                            <constraint firstItem="Efi-Ty-NO3" firstAttribute="leading" secondItem="WEl-ep-cuQ" secondAttribute="leadingMargin" constant="8" id="5iZ-D8-ktf"/>
+                            <constraint firstItem="24g-Ws-2uX" firstAttribute="leading" secondItem="WEl-ep-cuQ" secondAttribute="leadingMargin" constant="106" id="Bau-iC-XmL"/>
+                            <constraint firstItem="24g-Ws-2uX" firstAttribute="top" secondItem="xqk-bM-tKW" secondAttribute="bottom" constant="17" id="Cv2-fA-nc4"/>
+                            <constraint firstItem="6YQ-o7-VzB" firstAttribute="leading" secondItem="WEl-ep-cuQ" secondAttribute="leadingMargin" constant="5" id="DVZ-Ki-Okj"/>
+                            <constraint firstItem="Efi-Ty-NO3" firstAttribute="top" secondItem="24g-Ws-2uX" secondAttribute="bottom" constant="8" id="EXc-ik-kYR"/>
+                            <constraint firstItem="6YQ-o7-VzB" firstAttribute="top" secondItem="Efi-Ty-NO3" secondAttribute="bottom" constant="8" id="GJw-15-S7S"/>
+                            <constraint firstAttribute="centerX" secondItem="xqk-bM-tKW" secondAttribute="centerX" id="GSY-Dn-v4a"/>
+                            <constraint firstItem="xqk-bM-tKW" firstAttribute="trailing" secondItem="WEl-ep-cuQ" secondAttribute="trailingMargin" id="Jqt-E7-h0v"/>
+                            <constraint firstItem="aYP-50-DUI" firstAttribute="top" secondItem="vMQ-gT-QEU" secondAttribute="bottom" id="MgS-Tf-05H"/>
+                            <constraint firstItem="hgH-YM-3DC" firstAttribute="top" secondItem="6YQ-o7-VzB" secondAttribute="bottom" constant="17" id="Y1c-HJ-XoV"/>
+                            <constraint firstItem="xqk-bM-tKW" firstAttribute="top" secondItem="aYP-50-DUI" secondAttribute="bottom" constant="8" id="ZRG-gg-YwT"/>
+                            <constraint firstAttribute="centerY" secondItem="xqk-bM-tKW" secondAttribute="centerY" constant="241.5" id="op2-mE-Rjz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6YQ-o7-VzB" secondAttribute="trailing" constant="5" id="rQz-vp-Hlu"/>
+                            <constraint firstAttribute="centerX" secondItem="Efi-Ty-NO3" secondAttribute="centerX" constant="-3" id="s4u-2e-soj"/>
+                        </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="detailImageView" destination="24g-Ws-2uX" id="Fg8-nB-6lx"/>
                         <outlet property="synopsisLabel" destination="Efi-Ty-NO3" id="LDM-vi-Z95"/>
@@ -139,7 +168,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k3v-9L-AQQ">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" ambiguous="YES" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3v-9L-AQQ">
                                 <rect key="frame" x="0.0" y="-16" width="628" height="648"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="k3v-9L-AQQ" secondAttribute="height" multiplier="157:162" id="Odw-lp-CgD"/>

@@ -52,12 +52,10 @@
     {
         Movie *movie = [[Movie alloc] init];
         movie.title = [movieDictionary objectForKey:@"title"];
-        //movie.id = [movieDictionary objectForKey:@"id"];
+        
         movie.mpaaRating = [movieDictionary objectForKey:@"mpaa_rating"];
         movie.synopsis = [movieDictionary objectForKey:@"synopsis"];
-//        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-//        [numberFormatter numberFromString:]
-        
+
         // theatre release date
         movie.theatreReleaseDate = [[movieDictionary objectForKey:@"release_dates"] objectForKey:@"theatres"];
         
@@ -76,7 +74,7 @@
     }
     
     layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(150, 150);
+    layout.itemSize = CGSizeMake(300, 300);
     layout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
     layout.minimumInteritemSpacing = 10.0f;
     layout.minimumLineSpacing = 10.0f;
@@ -120,11 +118,11 @@
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"did select item");
-    //MovieDetailViewController *detailVC =[self.storyboard instantiateViewControllerWithIdentifier:@"ActressDetailViewController"];
+    //MovieDetailViewController *detailVC =[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     
     //Movie *movie = self.movies[indexPath.row];
    
-    // detailVC.imgfile= actress.imageFile;
+    // detailVC.imgfile= movie.imageFile;
     // detailVC.movie = movie;
     
     //[self.navigationController pushViewController:detailVC animated:true];
@@ -139,8 +137,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
-    
-    NSLog(@"preparing for segue");
     MovieDetailViewController *detailVC = [segue destinationViewController];
     detailVC.movie = [[Movie alloc] init];
     

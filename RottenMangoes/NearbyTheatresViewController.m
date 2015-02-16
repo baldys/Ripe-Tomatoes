@@ -195,7 +195,8 @@
     //NSString *apiEndpoint =  @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json";
     
     NSString *apiEndpoint = @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json";
-    NSString *urlString= [apiEndpoint stringByAppendingString:[NSString stringWithFormat:@"?address=%+.6f,%+.6f&movie=%@",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, self.selectedMovie.title]];
+    NSString *encodedMovieTitleString = [self.selectedMovie.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *urlString= [apiEndpoint stringByAppendingString:[NSString stringWithFormat:@"?address=%+.6f,%+.6f&movie=%@",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, encodedMovieTitleString]];
     NSLog(@"URL STRING: %@", urlString);
     NSLog(@"latitude: %+.6f, longitude: %+.6f \n", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
     NSLog(@"self.mapVIew.userlocation %@ \n", self.mapView.userLocation);

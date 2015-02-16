@@ -8,14 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
+#import "Movie.h"
+#import "Theatre.h"
 @interface NearbyTheatresViewController : UIViewController <MKMapViewDelegate>
 
-
 @property(nonatomic, weak) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) NSString *movieTitle;
-@property (nonatomic, strong) NSString *address;
 
-
-
+@property (nonatomic,strong) Movie *selectedMovie;
+@property (nonatomic,strong) Theatre *theatre;
 @end

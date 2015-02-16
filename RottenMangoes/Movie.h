@@ -29,5 +29,6 @@
 //- (UIImage *)imageFromURLString:(NSString*)url;
 - (NSString*)formattedDate;
 
+@property (nonatomic, strong) NSArray *theatres;
 
 @end

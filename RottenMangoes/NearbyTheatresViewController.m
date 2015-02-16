@@ -15,6 +15,9 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableArray *theatres;
+@property (strong, nonatomic) NSMutableArray *theatreLocations;
+
+
 @end
 
 @implementation NearbyTheatresViewController
@@ -30,20 +33,22 @@
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
     {
         [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager startUpdatingLocation];
     }
     [self.locationManager startUpdatingLocation];
     
-    self.mapView.showsUserLocation = true;
+    self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+    NSLog(@"self.mapView.userLocation: %@ \n", self.mapView.userLocation);
+    
     
     // zooms in automatically to the location and the map shows an area within 0.02 latitudes/longtitudes of current location
     MKCoordinateRegion startingRegion;
     startingRegion.center = self.locationManager.location.coordinate; //risky to use before authorization
-    startingRegion.span.latitudeDelta = 0.02;
-    startingRegion.span.longitudeDelta = 0.02;
+    startingRegion.span.latitudeDelta = 0.1;
+    startingRegion.span.longitudeDelta = 0.1;
     
     [self.mapView setRegion:startingRegion];
-    
     
     MKPointAnnotation *marker = [[MKPointAnnotation alloc] init];
 
@@ -67,9 +72,10 @@
 #pragma mark Location Manager Delegate Methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    NSLog(@"%@", [locations lastObject]);
-    NSLog(@"%@", locations);
-    CLLocation* location = [locations firstObject];
+    NSLog(@"location %@", [locations lastObject]);
+    NSLog(@"locations %@", locations);
+    CLLocation* location = [locations lastObject];
+    
     NSDate* eventDate = location.timestamp;
     
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
@@ -77,6 +83,10 @@
     {
         NSLog(@"latitude: %+.6f, longitude: %+.6f", location.coordinate.latitude, location.coordinate.longitude);
    
+    }
+    if (locations.count > 100)
+    {
+        [self.locationManager stopUpdatingLocation];
     }
     [self addressFromLatitudeAndLongitude:location];
     
@@ -87,6 +97,7 @@
     */
 }
 
+// gives the address of my/the users current location
 - (void) addressFromLatitudeAndLongitude:(CLLocation*)location
 {
     [self.locationManager stopUpdatingLocation];
@@ -96,8 +107,10 @@
      {
          if (placemarks && placemarks.count > 0)
          {
+            
              CLPlacemark *placemark = placemarks[0];
-             NSLog(@"%@, %@, %@, %@, %@, %@", [placemark thoroughfare], [placemark subLocality],[placemark subAdministrativeArea], [placemark administrativeArea], [placemark country], [placemark postalCode]);
+             NSLog(@"placemark location: %@", [placemark location]);
+             NSLog(@"%@, %@, %@ %@, %@, %@, %@, %@",[placemark subThoroughfare], [placemark thoroughfare], [placemark subLocality],[placemark locality],[placemark subAdministrativeArea], [placemark administrativeArea], [placemark country], [placemark postalCode]);
          }
      }];
 }
@@ -146,7 +159,7 @@
     }
     
     pinView.canShowCallout = YES;
-    pinView.pinColor = MKPinAnnotationColorGreen;
+    pinView.pinColor = MKPinAnnotationColorRed;
     //pinView.calloutOffset = CGPointMake(-7, 0);
     
     return pinView;
@@ -157,21 +170,44 @@
     NSLog(@"Got error %@", [error localizedDescription]);
 }
 
+- (void) addLocation:(NSString*) title withLat:(float)lat andLng:(float)lng{
+    
+    MKPointAnnotation *marker=[[MKPointAnnotation alloc] init];
+    CLLocationCoordinate2D theatreLocation;
+    theatreLocation.latitude = lat;
+    theatreLocation.longitude = lng;
+    marker.coordinate = theatreLocation;
+    marker.title = title;
+    if (self.theatreLocations == nil)
+    {
+        self.theatreLocations = [NSMutableArray array];
+    }
+    [self.theatreLocations addObject:marker];
+
+}
+// show the movie theatres playing the selected movie using URL sessiom
 - (void) showMovieTheatres
 {
+    NSLog(@"self.mapView.userlocation.title: %@", self.mapView.userLocation.title);
     
     // example api call http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=49.2804249,-123.1069674&movie=Paddington
     
     //NSString *apiEndpoint =  @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json";
-    NSString *urlString = @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=49.2804249,-123.1069674&movie=Paddington";
-    NSURLSession *session = [NSURLSession sharedSession ];
     
+    NSString *apiEndpoint = @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json";
+    NSString *urlString= [apiEndpoint stringByAppendingString:[NSString stringWithFormat:@"?address=%+.6f,%+.6f&movie=%@",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, self.selectedMovie.title]];
+    NSLog(@"URL STRING: %@", urlString);
+    NSLog(@"latitude: %+.6f, longitude: %+.6f \n", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    NSLog(@"self.mapVIew.userlocation %@ \n", self.mapView.userLocation);
+    
+    NSURLSession *session = [NSURLSession sharedSession ];
     [[session dataTaskWithURL:[NSURL URLWithString:urlString]
             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        // do stuff
         NSLog(@"%@", data);
-    
+        NSLog(@"%@", response);
+        NSLog(@"%@", error);
+        
         NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
         if (!self.theatres)
@@ -182,28 +218,43 @@
         self.theatres = [NSMutableArray array];
         
         NSArray *theatresArray = dataDictionary[@"theatres"];
+        
+        // theatre data dictionary - dictionary of theatre objects
+        // contains keys id, name, address, lat, lng
+    
         for (NSDictionary *theatreDataDictionary in theatresArray)
         {
+            
             Theatre *theatre = [[Theatre alloc] init];
             NSLog(@"%@", theatreDataDictionary[@"name"]);
             theatre.name = theatreDataDictionary[@"name"];
             theatre.address = theatreDataDictionary[@"address"];
-            //theatre.latitude = (float)theatreDataDictionary[@"lat"];
-           // theatre.longitude = (float)heatreDataDictionary[@"lng"];
-        
+            theatre.lat = theatreDataDictionary[@"lat"];
+            theatre.lng = theatreDataDictionary[@"lng"];
+            NSLog(@"trying to parse: %@ ", theatreDataDictionary[@"lat"]);
+            NSLog(@"trying to parse: %@ ", theatreDataDictionary[@"lng"]);
+            
+            NSLog(@"trying to parse: %@ ", theatre.lng);
+            float latitude = [theatre.lat floatValue];
+            float longitude = [theatre.lng floatValue];
+            [self.theatres addObject:theatre];
+            [self addLocation:theatre.name withLat:latitude andLng:longitude];
+            
         }
-        //NSLog(@"dataDictionary %@", dataDictionary);
-        // for (NSDictionary *theatreDataDictionary in theatresArray)
-        //  Theatre *theatre = [[Theatre alloc]init];
-        // theatre.name = theatreDataDictionary[@"name"];
-        // theatre.address = theatreDataDictionary[@"address"];
-        // theatre.location.latitude = theatreDataDictionary[@"lat"];
-        // theatre.location.longitude = theatreDataDictionary[@"lng"];
-        // [self.theatres addObject:theatre];
         
-                    
+        for (MKPointAnnotation* annotation in self.theatreLocations)
+        {
+            [self.mapView addAnnotation:annotation];
+        }
+        
+        
     }] resume];
-    
+   
+  
+    for (Theatre *theatre in self.theatres)
+    {
+        NSLog(@"%@", theatre.address);
+    }
     //NSString * apiString = [apiEndpoint stringByAppendingString:[NSString stringWithFormat:@"?address=%f,%%20%f&movie=%@",self.locationManager.location.coordinate.latitude, self.userLocation.coordinate.longitude, self.movieTitle ]];
     
     //NSLog(@"%@", apiString);

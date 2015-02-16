@@ -13,7 +13,9 @@
 - (NSURL *)thumbnailURL
 {
     NSLog(@"%@", [self.thumbnail class]);
-    return [NSURL URLWithString:self.thumbnail];
+    //NSString *betterImage = [self.thumbnail stringByAppendi
+    NSString *betterImageURL = [self.thumbnail stringByReplacingOccurrencesOfString:@"tmb.jpg" withString:@"ori.jpg"];
+    return [NSURL URLWithString:betterImageURL];
 }
 
 /*

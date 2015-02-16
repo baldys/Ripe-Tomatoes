@@ -9,11 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 @interface Theatre : NSObject
+{
+    double _latitude;
+    double _longitude;
+}
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *address;
-@property (nonatomic) float *latitude;
-@property (nonatomic) float *longitude;
+@property (nonatomic, strong) NSString *lat;
+@property (nonatomic, strong) NSString *lng;
 
 @end
 

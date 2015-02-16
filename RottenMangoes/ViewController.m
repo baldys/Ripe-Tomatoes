@@ -29,13 +29,14 @@
 
     // Do any additional setup after loading the view, typically from a nib.
     
-    /// ugh spaghettti code
+    
     NSString *myUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=50";
     NSURL *moviesURL = [NSURL URLWithString:myUrl];
     NSLog(@"%@", moviesURL);
     NSData *jsonData = [NSData dataWithContentsOfURL:moviesURL];
     NSLog(@"%@",jsonData);
     NSError *error = nil;
+    
     NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
     
     if (!self.movies)

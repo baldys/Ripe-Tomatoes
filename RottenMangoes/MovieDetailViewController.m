@@ -35,22 +35,19 @@
 
 -(void)configureView
 {
-    ///// redundant code; refactor later;
+
     self.titleLabel.text = self.movie.title;
-    
     NSData *imageData = [NSData dataWithContentsOfURL:self.movie.thumbnailURL];
     UIImage *image = [UIImage imageWithData:imageData];
     self.detailImageView.image = image;
     self.synopsisLabel.text = self.movie.synopsis;
 
-    /////
 }
 
 -(void) movieDetails:(Movie*)newMovie
 {
     self.movie = [[Movie alloc] init];
     self.movie = newMovie;
-    
 }
 
 #pragma mark - Navigation
@@ -60,9 +57,9 @@
 
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    NearbyTheatresViewController *mapVC = segue.destinationViewController;
-    mapVC.movieTitle = self.movie.title;
-    
+    NearbyTheatresViewController *mapVC = [segue destinationViewController];
+    mapVC.selectedMovie = [[Movie alloc] init ];
+    mapVC.selectedMovie = self.movie;
 }
 
 @end

@@ -45,8 +45,8 @@
     // zooms in automatically to the location and the map shows an area within 0.02 latitudes/longtitudes of current location
     MKCoordinateRegion startingRegion;
     startingRegion.center = self.locationManager.location.coordinate; //risky to use before authorization
-    startingRegion.span.latitudeDelta = 0.1;
-    startingRegion.span.longitudeDelta = 0.1;
+    startingRegion.span.latitudeDelta = 0.04;
+    startingRegion.span.longitudeDelta = 0.04;
     
     [self.mapView setRegion:startingRegion];
     
@@ -245,12 +245,21 @@
         
         for (MKPointAnnotation* annotation in self.theatreLocations)
         {
-            [self.mapView addAnnotation:annotation];
+            dispatch_async(dispatch_get_main_queue(), ^{
+            
+                [self.mapView addAnnotation:annotation];
+            
+            });
+            
         }
         
         
     }] resume];
    
+//    for (MKPointAnnotation* annotation in self.theatreLocations)
+//    {
+//        [self.mapView addAnnotation:annotation];
+//    }
   
     for (Theatre *theatre in self.theatres)
     {

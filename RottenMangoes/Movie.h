@@ -11,23 +11,29 @@
 
 @interface Movie : NSObject
 
-
-//@property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *theatreReleaseDate;
 @property (nonatomic, strong) NSString *mpaaRating;
 @property NSInteger year;
 @property NSInteger runtime;
 @property (nonatomic, strong) NSString *synopsis;
-@property (nonatomic, strong) NSString *thumbnail;
 
 @property (nonatomic, strong) NSDictionary *imageDictionary;
+@property (nonatomic, strong) NSString *thumbnail;
+
 @property (nonatomic, strong) NSDictionary *ratings;
+@property (nonatomic, strong) NSString *criticsRating;
+@property NSInteger criticsScore;
+@property (nonatomic, strong) NSString *audienceRating;
+@property NSInteger audienceScore;
+
 @property (nonatomic, strong) NSDictionary *reviews;
 
+
 - (NSURL *)thumbnailURL;
-//- (UIImage *)imageFromURLString:(NSString*)url;
+
 - (NSString*)formattedDate;
+
 
 @property (nonatomic, strong) NSArray *theatres;
 

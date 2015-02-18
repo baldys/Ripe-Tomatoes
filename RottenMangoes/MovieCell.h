@@ -11,6 +11,8 @@
 
 @interface MovieCell : UICollectionViewCell
 
+@property (readonly, weak, nonatomic) IBOutlet UIImageView *imageView;
+
 - (void)cellWithMovie:(Movie*)movie;
 
 @end

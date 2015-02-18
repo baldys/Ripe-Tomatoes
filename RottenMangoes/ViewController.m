@@ -119,17 +119,22 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"MovieCell";
-    
-    MovieCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    MovieCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MovieCell class]) forIndexPath:indexPath];
     
     Movie *movie = self.movies[indexPath.item];
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        [cell cellWithMovie:movie];
-        
+        if ([movie.thumbnail isKindOfClass:[NSString class]]) {
+            NSData *imageData = [NSData dataWithContentsOfURL:movie.thumbnailURL];
+            UIImage *image = [UIImage imageWithData:imageData];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                MovieCell *cell = (MovieCell *)[collectionView cellForItemAtIndexPath:indexPath];
+                cell.imageView.image = image;
+            });
+
+        }
     });
-    
     return cell;
 }
 /*

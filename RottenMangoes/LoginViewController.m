@@ -40,7 +40,8 @@
             }
             else
             {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                NSParameterAssert([NSThread isMainThread] == YES);
+                [self performSegueWithIdentifier:@"showViewController" sender:self];
             }
         }];
     }

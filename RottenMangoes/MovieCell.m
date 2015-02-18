@@ -17,6 +17,11 @@
 
 @implementation MovieCell
 
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.imageView.image = nil;
+}
+
 -(void)cellWithMovie:(Movie *)movie
 {
     if ([movie.thumbnail isKindOfClass:[NSString class]])

@@ -36,6 +36,12 @@
     
     //first page url (display first 10 movies)
     NSString *myUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=10";
+    NSString *reviewsURLString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=10";
+    // reviews URL from string:
+    // returns a URL and takes NSStrings: movie id, api key ?
+    // and API endpoint., page limit.
+    
+    
     NSURL *moviesURL = [NSURL URLWithString:myUrl];
     NSLog(@"%@", moviesURL);
     

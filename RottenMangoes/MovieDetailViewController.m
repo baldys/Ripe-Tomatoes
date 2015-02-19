@@ -14,6 +14,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *criticsScoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *criticsRatingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *audienceRatingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *audienceScoreLabel;
+
+
+
 @end
 
 @implementation MovieDetailViewController
@@ -37,10 +44,24 @@
 {
 
     self.titleLabel.text = self.movie.title;
+    self.navigationItem.title = self.movie.title;
     NSData *imageData = [NSData dataWithContentsOfURL:self.movie.thumbnailURL];
     UIImage *image = [UIImage imageWithData:imageData];
     self.detailImageView.image = image;
     self.synopsisLabel.text = self.movie.synopsis;
+    
+    // Critics: scores, ratings reviews.
+    // [ ] GET CRITICS REVIEWS FROM API
+    // [ ] ADD A FIELD TO SHOW REVIEWS
+    self.criticsRatingLabel.text = self.movie.criticsRating;
+    self.criticsScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.movie.criticsScore];
+    
+    // Audience scores and ratings
+    self.audienceRatingLabel.text = self.movie.audienceRating;
+    self.audienceScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.movie.audienceScore];
+    
+    
+    
 
 }
 

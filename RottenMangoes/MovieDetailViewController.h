@@ -14,6 +14,9 @@
 @property (nonatomic, weak) IBOutlet UIImageView *detailImageView;
 @property (nonatomic, strong) Movie *movie;
 
+
+
+
 //@property NSString *imgfile;
 - (void) movieDetails:(Movie*)newMovie;
 @end

@@ -211,11 +211,6 @@
         
         NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
-        if (!self.theatres)
-        {
-            self.theatres = [[NSMutableArray alloc] init];
-        }
-        
         self.theatres = [NSMutableArray array];
         
         NSArray *theatresArray = dataDictionary[@"theatres"];

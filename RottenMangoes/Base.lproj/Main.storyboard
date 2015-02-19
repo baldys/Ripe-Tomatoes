@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2z5-lM-jib">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -247,18 +246,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3v-9L-AQQ">
-                                <rect key="frame" x="0.0" y="-16" width="628" height="648"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="k3v-9L-AQQ" secondAttribute="height" multiplier="157:162" id="Odw-lp-CgD"/>
-                                </constraints>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3v-9L-AQQ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="k3v-9L-AQQ" firstAttribute="leading" secondItem="EIm-w2-RRw" secondAttribute="leading" id="XA4-Pf-tys"/>
-                            <constraint firstItem="k3v-9L-AQQ" firstAttribute="top" secondItem="EIm-w2-RRw" secondAttribute="topMargin" constant="-16" id="qiE-i2-jm6"/>
-                            <constraint firstItem="ZNv-yy-kB2" firstAttribute="top" secondItem="k3v-9L-AQQ" secondAttribute="bottom" constant="60" id="yQd-1Q-v8O"/>
+                            <constraint firstItem="k3v-9L-AQQ" firstAttribute="height" secondItem="EIm-w2-RRw" secondAttribute="height" id="6IJ-nv-iGe"/>
+                            <constraint firstItem="k3v-9L-AQQ" firstAttribute="centerX" secondItem="EIm-w2-RRw" secondAttribute="centerX" id="DTG-jK-cIU"/>
+                            <constraint firstItem="k3v-9L-AQQ" firstAttribute="width" secondItem="EIm-w2-RRw" secondAttribute="width" id="QUJ-vI-yHQ"/>
                         </constraints>
                     </view>
                     <connections>

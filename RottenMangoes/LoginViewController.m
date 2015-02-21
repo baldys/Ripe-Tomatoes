@@ -40,9 +40,10 @@
             }
             else
             {
-                NSParameterAssert([NSThread isMainThread] == YES);
-                [self performSegueWithIdentifier:@"showViewController" sender:self];
+//                NSParameterAssert([NSThread isMainThread] == YES);
+//                [self performSegueWithIdentifier:@"showViewController" sender:self];
             }
+            [self.navigationController popViewControllerAnimated:NO];
         }];
     }
 

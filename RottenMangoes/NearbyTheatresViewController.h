@@ -16,4 +16,8 @@
 
 @property (nonatomic,strong) Movie *selectedMovie;
 @property (nonatomic,strong) Theatre *theatre;
+@property (nonatomic, strong) NSString *theatresURLString;
+//(NSDictionary*)getTheatresPlayingMovie:(NSString*)movieID(orname)
+
+
 @end

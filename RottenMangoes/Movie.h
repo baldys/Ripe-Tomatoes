@@ -11,6 +11,7 @@
 
 @interface Movie : NSObject
 
+@property (nonatomic, strong) NSString *movieID;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *theatreReleaseDate;
 @property (nonatomic, strong) NSString *mpaaRating;
@@ -27,13 +28,15 @@
 @property (nonatomic, strong) NSString *audienceRating;
 @property NSInteger audienceScore;
 
-@property (nonatomic, strong) NSDictionary *reviews;
+//@property (nonatomic, strong) NSDictionary *reviews;
 
+@property (nonatomic, strong) NSArray *reviewsArray;
 
+//+ (instancetype)movieWithDictionary:(NSDictionary*)movieDictionary;
+
+- (NSURL*)reviewsURLForMovie:(NSString*)movieID;
 - (NSURL *)thumbnailURL;
-
 - (NSString*)formattedDate;
-
 
 @property (nonatomic, strong) NSArray *theatres;
 

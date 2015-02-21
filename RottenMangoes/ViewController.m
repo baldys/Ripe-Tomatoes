@@ -11,6 +11,7 @@
 #import "MovieCell.h"
 #import <Parse/Parse.h>
 
+
 @interface ViewController ()
 {
     UICollectionViewFlowLayout* layout;
@@ -18,12 +19,13 @@
 }
 
 @property (nonatomic, strong) NSMutableArray *movies;
-
+@property (nonatomic, strong) NSMutableArray *reviews;
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     
@@ -34,12 +36,9 @@
     
     // next page http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=10&page=2
     
-    //first page url (display first 10 movies)
-    NSString *myUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=10";
-    NSString *reviewsURLString = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=10";
-    // reviews URL from string:
-    // returns a URL and takes NSStrings: movie id, api key ?
-    // and API endpoint., page limit.
+    //first page url (display first 50 movies)
+    NSString *myUrl = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=kkat5xh5bfr8bmsbnredmx5b&page_limit=50";
+    
     
     
     NSURL *moviesURL = [NSURL URLWithString:myUrl];
@@ -62,7 +61,9 @@
           NSLog(@"dataDictionary %@", dataDictionary);
           for (NSDictionary *movieDictionary in moviesArray)
           {
+              
               Movie *movie = [[Movie alloc] init];
+              movie.movieID = [movieDictionary objectForKey:@"id"];
               movie.title = [movieDictionary objectForKey:@"title"];
               
               movie.mpaaRating = [movieDictionary objectForKey:@"mpaa_rating"];
@@ -111,9 +112,52 @@
     
 }
 
+
+- (void)loadReviewsFromURL:(NSURL*)reviewsUrl
+{
+    // reviews [ -> review {critic date freshness publication quote},{},{} ]
+    ///
+    static const NSString* kReviews = @"reviews";
+    static const NSString* kCritic = @"critic";
+    static const NSString* kDate = @"date";
+    static const NSString* kCriticMovieRating = @"freshness";
+    static const NSString* kPublication = @"publication";
+    static const NSString* kQuote = @"quote";
+    NSURLSession *session = [NSURLSession sharedSession];
+    
+    [[session dataTaskWithURL:reviewsUrl
+           completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+     {
+         NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+         
+         self.reviews = [NSMutableArray array];
+         
+         NSArray *reviewsArray = [dataDictionary objectForKey:kReviews];
+         NSArray *keys = @[kCritic, kDate, kCriticMovieRating, kPublication,kQuote];
+         NSLog(@"dataDictionary %@", dataDictionary);
+         for (NSDictionary *reviewDictionary in reviewsArray)
+         {
+             [reviewDictionary dictionaryWithValuesForKeys:keys];
+             //NSLog(@"reviewDIct[0] %@", reviewDictionary[0]);
+             [self.reviews addObject:reviewDictionary];
+             
+             
+         }
+         
+         dispatch_async(dispatch_get_main_queue(), ^{
+             
+             [self.collectionView reloadData];
+         });
+     }] resume ];
+
+}
+
+
+
 #pragma mark - UICollectionView Datasource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     
     return self.movies.count;
 }
@@ -128,6 +172,7 @@
     MovieCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MovieCell class]) forIndexPath:indexPath];
     
     Movie *movie = self.movies[indexPath.item];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         if ([movie.thumbnail isKindOfClass:[NSString class]]) {
@@ -155,6 +200,14 @@
 -(void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"did select item");
+    Movie *movie = [[Movie alloc]init];
+    movie = self.movies[indexPath.item];
+   
+    // get movie reviews for the corresponding movie ID to put in the url string
+    NSURL *reviewsURL = [movie reviewsURLForMovie:movie.movieID];
+    NSLog(@"reviewsURL: %@", reviewsURL);
+    [self loadReviewsFromURL:reviewsURL];
+    
     //MovieDetailViewController *detailVC =[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     
     //Movie *movie = self.movies[indexPath.row];
@@ -163,6 +216,8 @@
     // detailVC.movie = movie;
     
     //[self.navigationController pushViewController:detailVC animated:true];
+    
+    
     
 }
 

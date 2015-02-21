@@ -188,26 +188,25 @@
 // show the movie theatres playing the selected movie using URL sessiom
 - (void) showMovieTheatres
 {
-    NSLog(@"self.mapView.userlocation.title: %@", self.mapView.userLocation.title);
-    
+
     // example api call http://lighthouse-movie-showtimes.herokuapp.com/theatres.json?address=49.2804249,-123.1069674&movie=Paddington
     
-    //NSString *apiEndpoint =  @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json";
-    
     NSString *apiEndpoint = @"http://lighthouse-movie-showtimes.herokuapp.com/theatres.json";
-    NSString *encodedMovieTitleString = [self.selectedMovie.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *urlString= [apiEndpoint stringByAppendingString:[NSString stringWithFormat:@"?address=%+.6f,%+.6f&movie=%@",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, encodedMovieTitleString]];
-    NSLog(@"URL STRING: %@", urlString);
-    NSLog(@"latitude: %+.6f, longitude: %+.6f \n", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
-    NSLog(@"self.mapVIew.userlocation %@ \n", self.mapView.userLocation);
     
-    NSURLSession *session = [NSURLSession sharedSession ];
+    NSString *encodedMovieTitleString = [self.selectedMovie.title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *urlString= [apiEndpoint stringByAppendingString:[NSString stringWithFormat:@"?address=%+.6f,%+.6f&movie=%@",self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude, encodedMovieTitleString]];
+    ////
+    NSLog(@"latitude: %+.6f, longitude: %+.6f \n", self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    ////
+    
+    NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:urlString]
             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
-        NSLog(@"%@", data);
-        NSLog(@"%@", response);
-        NSLog(@"%@", error);
+        //NSLog(@"%@", data);
+        //NSLog(@"%@", response);
+        //NSLog(@"%@", error);
         
         NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         
@@ -227,10 +226,10 @@
             theatre.address = theatreDataDictionary[@"address"];
             theatre.lat = theatreDataDictionary[@"lat"];
             theatre.lng = theatreDataDictionary[@"lng"];
-            NSLog(@"trying to parse: %@ ", theatreDataDictionary[@"lat"]);
-            NSLog(@"trying to parse: %@ ", theatreDataDictionary[@"lng"]);
+            //NSLog(@"trying to parse: %@ ", theatreDataDictionary[@"lat"]);
+            //NSLog(@"trying to parse: %@ ", theatreDataDictionary[@"lng"]);
             
-            NSLog(@"trying to parse: %@ ", theatre.lng);
+            //NSLog(@"trying to parse: %@ ", theatre.lng);
             float latitude = [theatre.lat floatValue];
             float longitude = [theatre.lng floatValue];
             [self.theatres addObject:theatre];

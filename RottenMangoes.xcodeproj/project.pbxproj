@@ -24,6 +24,9 @@
 		9F6C812C1A8604B400BE89DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6C812B1A8604B400BE89DF /* MapKit.framework */; };
 		9F6C812E1A86065400BE89DF /* location.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 9F6C812D1A86065400BE89DF /* location.gpx */; };
 		9F6C812F1A8607F000BE89DF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F6C80F01A84A83900BE89DF /* Info.plist */; };
+		9FAFA72E1A9836BD00F7396B /* IMG_3447.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFA72D1A9836BD00F7396B /* IMG_3447.JPG */; };
+		9FAFA7301A984D7D00F7396B /* arrow191.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFA72F1A984D7D00F7396B /* arrow191.png */; };
+		9FAFA7321A985D6100F7396B /* friends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FAFA7311A985D6100F7396B /* friends@2x.png */; };
 		9FFA21481A92B2690037F9A3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA213D1A92B2690037F9A3 /* AudioToolbox.framework */; };
 		9FFA214A1A92B2690037F9A3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA213F1A92B2690037F9A3 /* CoreFoundation.framework */; };
 		9FFA214B1A92B2690037F9A3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FFA21401A92B2690037F9A3 /* CoreGraphics.framework */; };
@@ -86,6 +89,9 @@
 		9F6C81291A8604AC00BE89DF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9F6C812B1A8604B400BE89DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9F6C812D1A86065400BE89DF /* location.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = location.gpx; path = ../location.gpx; sourceTree = "<group>"; };
+		9FAFA72D1A9836BD00F7396B /* IMG_3447.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = IMG_3447.JPG; path = ../IMG_3447.JPG; sourceTree = "<group>"; };
+		9FAFA72F1A984D7D00F7396B /* arrow191.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow191.png; sourceTree = "<group>"; };
+		9FAFA7311A985D6100F7396B /* friends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends@2x.png"; sourceTree = "<group>"; };
 		9FFA213D1A92B2690037F9A3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9FFA213F1A92B2690037F9A3 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		9FFA21401A92B2690037F9A3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -194,9 +200,12 @@
 		9F6C80EE1A84A83900BE89DF /* RottenMangoes */ = {
 			isa = PBXGroup;
 			children = (
+				9FAFA72D1A9836BD00F7396B /* IMG_3447.JPG */,
+				9FAFA7311A985D6100F7396B /* friends@2x.png */,
 				9F6C80F31A84A83900BE89DF /* AppDelegate.h */,
 				9F6C80F41A84A83900BE89DF /* AppDelegate.m */,
 				9F6C80F61A84A83900BE89DF /* ViewController.h */,
+				9FAFA72F1A984D7D00F7396B /* arrow191.png */,
 				9F6C80F71A84A83900BE89DF /* ViewController.m */,
 				9F44A7551A88334B004F7B9C /* Theatre.h */,
 				9F44A7561A88334B004F7B9C /* Theatre.m */,
@@ -331,9 +340,12 @@
 			files = (
 				9F6C80FB1A84A83900BE89DF /* Main.storyboard in Resources */,
 				9F6C81001A84A83900BE89DF /* LaunchScreen.xib in Resources */,
+				9FAFA7301A984D7D00F7396B /* arrow191.png in Resources */,
 				9F6C812E1A86065400BE89DF /* location.gpx in Resources */,
 				9F6C812F1A8607F000BE89DF /* Info.plist in Resources */,
 				9F6C80FD1A84A83900BE89DF /* Images.xcassets in Resources */,
+				9FAFA7321A985D6100F7396B /* friends@2x.png in Resources */,
+				9FAFA72E1A9836BD00F7396B /* IMG_3447.JPG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

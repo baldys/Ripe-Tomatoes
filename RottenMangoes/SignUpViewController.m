@@ -49,7 +49,9 @@
             }
             else
             {
-                [self performSegueWithIdentifier:@"signInCorrectly" sender:self];
+                //[self performSegueWithIdentifier:@"signInCorrectly" sender:self];
+                [self.navigationController popViewControllerAnimated:NO];
+                
             }
         }];
     }

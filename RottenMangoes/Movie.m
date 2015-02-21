@@ -10,6 +10,21 @@
 
 @implementation Movie
 
+static const NSString *kAPIKey = @"kkat5xh5bfr8bmsbnredmx5b";
+
+- (NSURL*)reviewsURLForMovie:(NSString*)movieID
+{
+    // reviews URL from string:
+    // returns a URL and takes NSStrings: movie id, api key ?
+    // and API endpoint., page limit.
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies/%@/reviews.json?apikey=%@&page_limit=3", movieID, kAPIKey]];
+    
+}
+//+ (instancetype)movieWithDictionary:(NSDictionary *)movieDictionary
+//{
+//    self.movieDictionary = movieDictionary;
+//    
+//}
 - (NSURL *)thumbnailURL
 {
     NSLog(@"%@", [self.thumbnail class]);

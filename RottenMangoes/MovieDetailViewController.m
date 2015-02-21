@@ -59,10 +59,6 @@
     // Audience scores and ratings
     self.audienceRatingLabel.text = self.movie.audienceRating;
     self.audienceScoreLabel.text = [NSString stringWithFormat:@"%ld", (long)self.movie.audienceScore];
-    
-    
-    
-
 }
 
 -(void) movieDetails:(Movie*)newMovie
